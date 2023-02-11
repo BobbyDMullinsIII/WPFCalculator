@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFCalculatorProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="500" Width="450">
+    <Grid Height="500">
+        <Button Content="7" HorizontalAlignment="Left" Margin="25,238,0,0" VerticalAlignment="Top" Width="99" Height="50" FontSize="32" AutomationProperties.Name="7_Button" Click="Button_7_Click"/>
+        <Button Content="4" HorizontalAlignment="Left" Margin="25,289,0,0" VerticalAlignment="Top" Width="99" FontSize="32" Height="50" AutomationProperties.Name="4_Button" Click="Button_4_Click"/>
+        <Button Content="5" HorizontalAlignment="Left" Margin="124,289,0,0" VerticalAlignment="Top" Width="100" Height="50" FontSize="32" AutomationProperties.Name="5_Button" Click="Button_5_Click"/>
+        <Button Content="9" HorizontalAlignment="Left" Margin="224,238,0,0" VerticalAlignment="Top" FontSize="32" Width="99" Height="50" AutomationProperties.Name="9_Button" Click="Button_9_Click"/>
+        <Button Content="6" HorizontalAlignment="Left" Margin="224,289,0,0" VerticalAlignment="Top" FontSize="32" Width="99" Height="50" AutomationProperties.Name="6_Button" Click="Button_6_Click"/>
+        <Button Content="3" HorizontalAlignment="Left" Margin="224,340,0,0" VerticalAlignment="Top" FontSize="32" Width="99" Height="50" AutomationProperties.Name="3_Button" Click="Button_3_Click"/>
+        <Button Content="2" HorizontalAlignment="Left" Margin="124,340,0,0" VerticalAlignment="Top" FontSize="32" Width="100" Height="50" AutomationProperties.Name="2_Button" Click="Button_2_Click"/>
+        <Button Content="8" HorizontalAlignment="Left" Margin="124,238,0,0" VerticalAlignment="Top" FontSize="32" Width="100" Height="50" AutomationProperties.Name="8_Button" Click="Button_8_Click"/>
+        <Button Content="1" HorizontalAlignment="Left" Margin="25,340,0,0" VerticalAlignment="Top" FontSize="32" Width="99" Height="50" AutomationProperties.Name="1_Button" Click="Button_1_Click"/>
+        <Button Content="." HorizontalAlignment="Left" Margin="224,390,0,0" VerticalAlignment="Top" FontSize="32" Width="99" Height="50" AutomationProperties.Name="._Button" Click="Button_dot_Click"/>
+        <Button Content="0" HorizontalAlignment="Left" Margin="124,390,0,0" VerticalAlignment="Top" Width="100" FontSize="32" Height="50" AutomationProperties.Name="0_Button" Click="Button_0_Click"/>
+        <Button Content="+/-" HorizontalAlignment="Left" Margin="25,390,0,0" VerticalAlignment="Top" FontSize="32" Width="99" Height="50" AutomationProperties.Name="+/-_Button" Click="Button_neg_Click"/>
+        <Button Content="=" HorizontalAlignment="Left" Margin="323,390,0,0" VerticalAlignment="Top" Width="100" FontSize="32" Height="50" AutomationProperties.Name="=_Button" Click="Button_equals_Click"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="323,340,0,0" VerticalAlignment="Top" Width="100" FontSize="32" Height="50" AutomationProperties.Name="+_Button" Click="Button_plus_Click"/>
+        <Button Content="x" HorizontalAlignment="Left" Margin="323,238,0,0" VerticalAlignment="Top" Width="100" FontSize="32" Height="50" AutomationProperties.Name="x_Button" Click="Button_mult_Click"/>
+        <Button Content="-" HorizontalAlignment="Left" Margin="323,289,0,0" VerticalAlignment="Top" Width="100" FontSize="32" Height="50" AutomationProperties.Name="-_Button" Click="Button_minus_Click"/>
+        <Button Content="del" HorizontalAlignment="Left" Margin="323,136,0,0" VerticalAlignment="Top" Width="100" FontSize="32" Height="50" AutomationProperties.Name="del_Button" Click="Button_del_Click"/>
+        <Button Content="/" HorizontalAlignment="Left" Margin="323,187,0,0" VerticalAlignment="Top" Width="100" FontSize="32" Height="50" AutomationProperties.Name="/_Button" Click="Button_divide_Click"/>
+        <Button Content="sqrt" HorizontalAlignment="Left" Margin="224,187,0,0" VerticalAlignment="Top" FontSize="32" Width="99" Height="50" AutomationProperties.Name="sqrt_Button" Click="sqrt_Button_Click"/>
+        <Button Content="C" HorizontalAlignment="Left" Margin="224,136,0,0" VerticalAlignment="Top" FontSize="32" Width="99" Height="50" AutomationProperties.Name="C_Button" Click="Button_C_Click"/>
+        <Button Content="CE" HorizontalAlignment="Left" Margin="124,136,0,0" VerticalAlignment="Top" FontSize="32" Width="100" Height="50" AutomationProperties.Name="CE_Button" Click="Button_CE_Click"/>
+        <Button Content="x^2" HorizontalAlignment="Left" Margin="124,187,0,0" VerticalAlignment="Top" FontSize="32" Width="100" Height="50" AutomationProperties.Name="x^2_Button" Click="Button_squared_Click"/>
+        <Button Content="%" HorizontalAlignment="Left" Margin="25,136,0,0" VerticalAlignment="Top" FontSize="32" Width="99" Height="50" AutomationProperties.Name="%_Button" Click="Button_percent_Click"/>
+        <Button Content="1/x" HorizontalAlignment="Left" Margin="25,187,0,0" VerticalAlignment="Top" FontSize="32" Width="99" Height="50" AutomationProperties.Name="1/x_Button" Click="Button_1over_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="23,15,0,0" Text="0" VerticalAlignment="Top" Width="400" Height="120" FontSize="50" AutomationProperties.Name="Main_TextBox"/>
 
     </Grid>
 </Window>
