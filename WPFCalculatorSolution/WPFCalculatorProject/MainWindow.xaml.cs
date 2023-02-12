@@ -1,4 +1,15 @@
-﻿using System;
+﻿/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  Solution/Project:   WPFCalculatorSolution/WPFCalculatorProject
+//  File Name:          MainWindows.xaml.cs
+//  Description:        MainWindow WPF code file for calculator program
+//  Authors:            Bobby Mullins
+//  Created:            Thursday, February 9, 2023 | (2023-02-09)
+//  Copyright:          N/A
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +38,7 @@ namespace WPFCalculatorProject
 
         private void Button_0_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void Button_1_Click(object sender, RoutedEventArgs e)
@@ -125,7 +136,7 @@ namespace WPFCalculatorProject
 
         }
 
-        private void sqrt_Button_Click(object sender, RoutedEventArgs e)
+        private void Button_sqrt_Click(object sender, RoutedEventArgs e)
         {
 
         }
