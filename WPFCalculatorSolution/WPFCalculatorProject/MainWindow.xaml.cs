@@ -38,52 +38,52 @@ namespace WPFCalculatorProject
 
         private void Button_0_Click(object sender, RoutedEventArgs e)
         {
-            
+            MainTextBlock.Text += "0";
         }
 
         private void Button_1_Click(object sender, RoutedEventArgs e)
         {
-
+            MainTextBlock.Text += "1";
         }
 
         private void Button_2_Click(object sender, RoutedEventArgs e)
         {
-
+            MainTextBlock.Text += "2";
         }
 
         private void Button_3_Click(object sender, RoutedEventArgs e)
         {
-
+            MainTextBlock.Text += "3";
         }
 
         private void Button_4_Click(object sender, RoutedEventArgs e)
         {
-
+            MainTextBlock.Text += "4";
         }
 
         private void Button_5_Click(object sender, RoutedEventArgs e)
         {
-
+            MainTextBlock.Text += "5";
         }
 
         private void Button_6_Click(object sender, RoutedEventArgs e)
         {
-
+            MainTextBlock.Text += "6";
         }
 
         private void Button_7_Click(object sender, RoutedEventArgs e)
         {
-
+            MainTextBlock.Text += "7";
         }
 
         private void Button_8_Click(object sender, RoutedEventArgs e)
         {
-
+            MainTextBlock.Text += "8";
         }
 
         private void Button_9_Click(object sender, RoutedEventArgs e)
         {
-
+            MainTextBlock.Text += "9";
         }
 
         private void Button_equals_Click(object sender, RoutedEventArgs e)
