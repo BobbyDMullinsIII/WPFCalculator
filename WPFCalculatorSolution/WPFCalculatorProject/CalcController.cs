@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace WPFCalculatorProject
 {
-    internal class CalcController
+    public class CalcController
     {
     }
 }
