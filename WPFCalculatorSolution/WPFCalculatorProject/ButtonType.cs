@@ -12,7 +12,7 @@
 namespace WPFCalculatorProject
 {
     /// <summary>
-    /// Enum for different button types on the calculator
+    /// Enum representations for different button types on the calculator
     /// </summary>
     public enum ButtonType
     {

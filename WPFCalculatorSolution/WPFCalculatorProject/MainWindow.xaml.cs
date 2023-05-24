@@ -25,122 +25,132 @@ namespace WPFCalculatorProject
 
         private void Button_0_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Zero);
+            ButtonClick(ButtonType.Zero);
         }
 
         private void Button_1_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.One);
+            ButtonClick(ButtonType.One);
         }
 
         private void Button_2_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Two);
+            ButtonClick(ButtonType.Two);
         }
 
         private void Button_3_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Three);
+            ButtonClick(ButtonType.Three);
         }
 
         private void Button_4_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Four);
+            ButtonClick(ButtonType.Four);
         }
 
         private void Button_5_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Five);
+            ButtonClick(ButtonType.Five);
         }
 
         private void Button_6_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Zero);
+            ButtonClick(ButtonType.Zero);
         }
 
         private void Button_7_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Zero);
+            ButtonClick(ButtonType.Zero);
         }
 
         private void Button_8_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Eight);
+            ButtonClick(ButtonType.Eight);
         }
 
         private void Button_9_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Nine);
+            ButtonClick(ButtonType.Nine);
         }
 
         private void Button_equals_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Equals);
+            ButtonClick(ButtonType.Equals);
         }
 
         private void Button_plus_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Plus);
+            ButtonClick(ButtonType.Plus);
         }
 
         private void Button_minus_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Minus);
+            ButtonClick(ButtonType.Minus);
         }
 
         private void Button_mult_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Multiply);
+            ButtonClick(ButtonType.Multiply);
         }
 
         private void Button_divide_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Divide);
+            ButtonClick(ButtonType.Divide);
         }
 
         private void Button_del_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Delete);
+            ButtonClick(ButtonType.Delete);
         }
 
         private void Button_neg_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Negate);
+            ButtonClick(ButtonType.Negate);
         }
 
         private void Button_dot_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Dot);
+            ButtonClick(ButtonType.Dot);
         }
 
         private void Button_1over_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.OneOver);
+            ButtonClick(ButtonType.OneOver);
         }
 
         private void Button_squared_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Squared);
+            ButtonClick(ButtonType.Squared);
         }
 
         private void Button_sqrt_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.SquareRoot);
+            ButtonClick(ButtonType.SquareRoot);
         }
 
         private void Button_percent_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Percent);
+            ButtonClick(ButtonType.Percent);
         }
 
         private void Button_CE_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.ClearEntry);
+            ButtonClick(ButtonType.ClearEntry);
         }
 
         private void Button_C_Click(object sender, RoutedEventArgs e)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(ButtonType.Clear);
+            ButtonClick(ButtonType.Clear);
+        }
+
+        /// <summary>
+        /// Method for sending button press to CalcLogicController class
+        /// </summary>
+        /// <param name="type">Enum of button that was pressed</param>
+        private void ButtonClick(ButtonType type)
+        {
+            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(type);
+            PreviousTextBlock.Text = CalcLogicController.previousNumber;
         }
     }
 }
