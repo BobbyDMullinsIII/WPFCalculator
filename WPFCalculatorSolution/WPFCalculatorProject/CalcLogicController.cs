@@ -10,215 +10,228 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WPFCalculatorProject
 {
     /// <summary>
     /// Class for calculator math logic
     /// </summary>
-    public static class CalcLogicController
+    public class CalcLogicController
     {
-        //Start empty
-        public static string previousNumber = "";
-        public static string currentNumber = "";
-
-        public static ButtonType currentMath = ButtonType.Null; //Set to clear when no math logic can been input by user
-        public static bool writeLocked = false; //Determines whether calculator should be locke to current number until cleared
+        string previousNumber;
+        string currentNumber;
+        ButtonType currentMath;
 
         /// <summary>
-        /// Method for returning new numbers to calculator based on input
+        /// Basic constructor for CalcLogicController
+        /// </summary>
+        public CalcLogicController() 
+        {
+            //Standard values set to empty or null
+            this.previousNumber = "";
+            this.currentNumber = "";
+            this.currentMath = ButtonType.Null;
+        }
+
+        /// <summary>
+        /// Method for returning 'previousNumber'
+        /// </summary>
+        /// <returns>'previousNumber' string</returns>
+        public string ReturnPreviousNumber()
+        {
+            return previousNumber;
+        }
+
+        /// <summary>
+        /// Method for returning 'currentNumber'
+        /// </summary>
+        /// <returns>'currentNumber' string</returns>
+        public string ReturnCurrentNumber()
+        {
+            return currentNumber;
+        }
+
+        /// <summary>
+        /// Method for setting all parameters to standard empty values
+        /// </summary>
+        public void ResetValues()
+        {
+            this.previousNumber = "";
+            this.currentNumber = "";
+            this.currentMath = ButtonType.Null;
+        }
+
+        /// <summary>
+        /// Method for modifying numbers on calculator based on button input
         /// </summary>
         /// <param name="pressedButton">Enum representation of button that was pressed on calculator</param>
-        /// <returns>Current main number that should be displayed on the calculator</returns>
-        public static string ReturnNewNumber(ButtonType pressedButton)
+        public void ModifyNumbers(ButtonType pressedButton)
         {
-            if (writeLocked == true && pressedButton != ButtonType.Clear && pressedButton != ButtonType.ClearEntry)
-            { 
-                //Do nothing if writelocked and clear buttons were not pressed
-            }
-            else
+            switch (pressedButton)
             {
-                switch (pressedButton)
-                {
-                    case ButtonType.Zero:
-                        currentNumber += "0";
-                        break;
+                case ButtonType.Zero:
+                    currentNumber += "0";
+                    break;
 
-                    case ButtonType.One:
-                        currentNumber += "1";
-                        break;
+                case ButtonType.One:
+                    currentNumber += "1";
+                    break;
 
-                    case ButtonType.Two:
-                        currentNumber += "2";
-                        break;
+                case ButtonType.Two:
+                    currentNumber += "2";
+                    break;
 
-                    case ButtonType.Three:
-                        currentNumber += "3";
-                        break;
+                case ButtonType.Three:
+                    currentNumber += "3";
+                    break;
 
-                    case ButtonType.Four:
-                        currentNumber += "4";
-                        break;
+                case ButtonType.Four:
+                    currentNumber += "4";
+                    break;
 
-                    case ButtonType.Five:
-                        currentNumber += "5";
-                        break;
+                case ButtonType.Five:
+                    currentNumber += "5";
+                    break;
 
-                    case ButtonType.Six:
-                        currentNumber += "6";
-                        break;
+                case ButtonType.Six:
+                    currentNumber += "6";
+                    break;
 
-                    case ButtonType.Seven:
-                        currentNumber += "7";
-                        break;
+                case ButtonType.Seven:
+                    currentNumber += "7";
+                    break;
 
-                    case ButtonType.Eight:
-                        currentNumber += "8";
-                        break;
+                case ButtonType.Eight:
+                    currentNumber += "8";
+                    break;
 
-                    case ButtonType.Nine:
-                        currentNumber += "9";
-                        break;
+                case ButtonType.Nine:
+                    currentNumber += "9";
+                    break;
 
-                    case ButtonType.Equals:
-                        if (currentMath != ButtonType.Null 
-                            && string.IsNullOrEmpty(currentNumber) == false 
-                            && string.IsNullOrEmpty(previousNumber) == false)
-                        {
-                            switch (currentMath)
-                            {
-                                case ButtonType.Plus:
-                                    double plusNum = Convert.ToDouble(previousNumber) + Convert.ToDouble(currentNumber);
-                                    currentNumber = plusNum.ToString();
-                                    break;
+                case ButtonType.Equals:
+                    //Will only work if 'currentMath', 'currentNumber', and 'previousNumber' actually have user-inserted data in them
+                    if (currentMath != ButtonType.Null && string.IsNullOrEmpty(currentNumber) == false && string.IsNullOrEmpty(previousNumber) == false)
+                    {
+                        currentNumber = CalcMathOperation(Convert.ToDouble(previousNumber), Convert.ToDouble(currentNumber), currentMath).ToString();
+                    }
+                    break;
 
-                                case ButtonType.Minus:
-                                    double minusNum = Convert.ToDouble(previousNumber) - Convert.ToDouble(currentNumber);
-                                    currentNumber = minusNum.ToString();
-                                    break;
+                case ButtonType.Plus:
+                case ButtonType.Minus:
+                case ButtonType.Multiply:
+                case ButtonType.Divide:
+                    MathOperatorLogic(pressedButton);
+                    break;
 
-                                case ButtonType.Multiply:
-                                    double multNum = Convert.ToDouble(previousNumber) * Convert.ToDouble(currentNumber);
-                                    currentNumber = multNum.ToString();
-                                    break;
+                case ButtonType.Delete:
+                    //Remove last number character in current number
+                    if (string.IsNullOrEmpty(currentNumber) == false)
+                    {
+                        currentNumber = currentNumber.Remove(currentNumber.Length - 1, 1);
+                    }
+                    break;
 
-                                case ButtonType.Divide:
-                                    double divideNum = Convert.ToDouble(previousNumber) / Convert.ToDouble(currentNumber);
-                                    currentNumber = divideNum.ToString();
-                                    break;
-                            }
+                case ButtonType.Negate:
+                    //Flips 'currentNumber' to and from negative and positive
+                    if (currentNumber.Contains('-'))
+                    {
+                        currentNumber = currentNumber.Remove(0);
+                    }
+                    else
+                    {
+                        currentNumber = currentNumber.Insert(0, "-");
+                    }
+                    break;
 
-                            writeLocked = true;
-                        }
-                        break;
+                case ButtonType.Dot:
+                    //Adds decimal to 'currentNumber' only if one is already not in it
+                    if (currentNumber.Contains('.') == false)
+                    {
+                        currentNumber += ".";
+                    }
+                    break;
 
-                    case ButtonType.Plus:
-                        currentMath = pressedButton;
-                        previousNumber = currentNumber;
-                        currentNumber = "";
-                        break;
+                case ButtonType.OneOver:
+                    //Calculates 'currentNumber' to be one over itself
+                    if (string.IsNullOrEmpty(currentNumber) == false)
+                    {
+                        double oneOverNum = 1 / Convert.ToDouble(currentNumber);
+                        currentNumber = oneOverNum.ToString();
+                    }
+                    break;
 
-                    case ButtonType.Minus:
-                        currentMath = pressedButton;
-                        previousNumber = currentNumber;
-                        currentNumber = "";
-                        break;
+                case ButtonType.Squared:
+                    //Calculates 'currentNumber' to be a square of itself
+                    if (string.IsNullOrEmpty(currentNumber) == false)
+                    {
+                        double squareNum = Math.Pow(Convert.ToDouble(currentNumber), 2);
+                        currentNumber += squareNum.ToString();
+                    }
+                    break;
 
-                    case ButtonType.Multiply:
-                        currentMath = pressedButton;
-                        previousNumber = currentNumber;
-                        currentNumber = "";
-                        break;
+                case ButtonType.SquareRoot:
+                    //Calculates 'currentNumber' to be a square root of itself
+                    if (string.IsNullOrEmpty(currentNumber) == false)
+                    {
+                        double sqrtNum = Math.Sqrt(Convert.ToDouble(currentNumber));
+                        currentNumber += sqrtNum.ToString();
+                    }
+                    break;
 
-                    case ButtonType.Divide:
-                        currentMath = pressedButton;
-                        previousNumber = currentNumber;
-                        currentNumber = "";
-                        break;
+                case ButtonType.Percent:
+                    //Not Done
+                    currentNumber = "NULL";
+                    break;
 
-                    case ButtonType.Delete:
-                        //Remove last number character in current number
-                        if (string.IsNullOrEmpty(currentNumber) == false)
-                        {
-                            currentNumber = currentNumber.Remove(currentNumber.Length - 1, 1);
-                        }
-                        break;
+                case ButtonType.ClearEntry:
+                    //Completely resets calculator
+                    ResetValues();
+                    break;
 
-                    case ButtonType.Negate:
-                        //Flips string to and from negative and positive
-                        if (currentNumber.Contains("-"))
-                        {
-                            currentNumber = currentNumber.Remove(0);
-                        }
-                        else
-                        {
-                            currentNumber = currentNumber.Insert(0, "-");
-                        }
-                        break;
+                case ButtonType.Clear:
+                    //Only clears current number
+                    currentNumber = "";
+                    break;
 
-                    case ButtonType.Dot:
-                        //Adds decimal to string only if one already is not in it
-                        if (currentNumber.Contains(".") == false)
-                        {
-                            currentNumber += ".";
-                        }
-                        break;
-
-                    case ButtonType.OneOver:
-                        if (string.IsNullOrEmpty(currentNumber) == false)
-                        {
-                            double oneOverNum = 1 / Convert.ToDouble(currentNumber);
-                            currentNumber = oneOverNum.ToString();
-                        }
-                        break;
-
-                    case ButtonType.Squared:
-                        if (string.IsNullOrEmpty(currentNumber) == false)
-                        {
-                            double squareNum = Math.Pow(Convert.ToDouble(currentNumber), 2);
-                            currentNumber += squareNum.ToString();
-                        }
-                        break;
-
-                    case ButtonType.SquareRoot:
-                        if (string.IsNullOrEmpty(currentNumber) == false)
-                        {
-                            double sqrtNum = Math.Sqrt(Convert.ToDouble(currentNumber));
-                            currentNumber += sqrtNum.ToString();
-                        }
-                        break;
-
-                    case ButtonType.Percent:
-                        //Not Done
-                        currentNumber = "NULL";
-                        break;
-
-                    case ButtonType.ClearEntry:
-                        //Completely resets calculator entry if entry is cleared
-                        previousNumber = "";
-                        currentNumber = "";
-                        currentMath = ButtonType.Null;
-                        writeLocked = false;
-                        break;
-
-                    case ButtonType.Clear:
-                        //Only clears current number
-                        currentNumber = "";
-                        writeLocked = false;
-                        break;
-
-                    default:
-                        currentNumber = "ERROR IN SWITCH STATEMENT";
-                        break;
-                }
+                default:
+                    //Default only if an unspecified buttontype gets input somehow
+                    currentNumber = "ERROR, DEFAULT IN SWITCH STATEMENT REACHED";
+                    break;
             }
+        }
 
-            return currentNumber;
+        /// <summary>
+        /// Method for returning result of math operatin
+        /// </summary>
+        /// <param name="firstNum">First number to conduct operation</param>
+        /// <param name="secondNum">Second number to conduct operation</param>
+        /// <param name="currentType">Type of math operation to conduct</param>
+        /// <returns>Result of math operation</returns>
+        public static double CalcMathOperation(double firstNum, double secondNum, ButtonType currentType)
+        {
+            return currentType switch
+            {
+                ButtonType.Plus => firstNum + secondNum,
+                ButtonType.Minus => firstNum - secondNum,
+                ButtonType.Multiply => firstNum * secondNum,
+                ButtonType.Divide => firstNum / secondNum,
+                _ => 0.0,
+            };
+        }
+
+        /// <summary>
+        /// Method for logic when pressing math operation buttons
+        /// </summary>
+        /// <param name="currentType">Type of math operation that was input</param>
+        public void MathOperatorLogic(ButtonType currentType)
+        {
+            if (string.IsNullOrEmpty(previousNumber) == true)
+            {
+                currentMath = currentType;
+                previousNumber = currentNumber;
+                currentNumber = "";
+            }
         }
 
     }//end CalcLogicController class

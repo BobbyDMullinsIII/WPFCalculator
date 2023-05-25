@@ -18,6 +18,8 @@ namespace WPFCalculatorProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        CalcLogicController controller = new();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -149,8 +151,9 @@ namespace WPFCalculatorProject
         /// <param name="type">Enum of button that was pressed</param>
         private void ButtonClick(ButtonType type)
         {
-            MainTextBlock.Text = CalcLogicController.ReturnNewNumber(type);
-            PreviousTextBlock.Text = CalcLogicController.previousNumber;
+            controller.ModifyNumbers(type);
+            MainTextBlock.Text = controller.ReturnCurrentNumber();
+            PreviousTextBlock.Text = controller.ReturnPreviousNumber();
         }
     }
 }
