@@ -25,7 +25,7 @@ namespace WPFCalculatorProject
         /// <summary>
         /// Basic constructor for CalcLogicController
         /// </summary>
-        public CalcLogicController() 
+        public CalcLogicController()
         {
             //Standard values set to empty or null
             this.previousNumber = "";
@@ -110,10 +110,14 @@ namespace WPFCalculatorProject
                     break;
 
                 case ButtonType.Equals:
-                    //Will only work if 'currentMath', 'currentNumber', and 'previousNumber' actually have user-inserted data in them
-                    if (currentMath != ButtonType.Null && string.IsNullOrEmpty(currentNumber) == false && string.IsNullOrEmpty(previousNumber) == false)
+                    //Will only work if 'currentMath', 'currentNumber', and 'previousNumber' have input data
+                    if (currentMath != ButtonType.Null
+                        && string.IsNullOrEmpty(currentNumber) == false
+                        && string.IsNullOrEmpty(previousNumber) == false)
                     {
-                        currentNumber = CalcMathOperation(Convert.ToDouble(previousNumber), Convert.ToDouble(currentNumber), currentMath).ToString();
+                        double prevNum = Convert.ToDouble(previousNumber);
+                        double currNum = Convert.ToDouble(currentNumber);
+                        currentNumber = CalcMathOperation(prevNum, currNum, currentMath).ToString();
                     }
                     break;
 
@@ -121,67 +125,35 @@ namespace WPFCalculatorProject
                 case ButtonType.Minus:
                 case ButtonType.Multiply:
                 case ButtonType.Divide:
+                    //Will return respective value if 'currentNumber' is not empty
                     MathOperatorLogic(pressedButton);
                     break;
 
                 case ButtonType.Delete:
-                    //Remove last number character in current number
-                    if (string.IsNullOrEmpty(currentNumber) == false)
-                    {
-                        currentNumber = currentNumber.Remove(currentNumber.Length - 1, 1);
-                    }
+                    //Remove last number character in current number if not empty
+                    currentNumber = DeleteLast(currentNumber);
                     break;
 
                 case ButtonType.Negate:
                     //Flips 'currentNumber' to and from negative and positive
-                    if (currentNumber.Contains('-'))
-                    {
-                        currentNumber = currentNumber.Remove(0);
-                    }
-                    else
-                    {
-                        currentNumber = currentNumber.Insert(0, "-");
-                    }
+                    currentNumber = ToggleNegate(currentNumber);
                     break;
 
                 case ButtonType.Dot:
                     //Adds decimal to 'currentNumber' only if one is already not in it
-                    if (currentNumber.Contains('.') == false)
-                    {
-                        currentNumber += ".";
-                    }
+                    currentNumber = AddDot(currentNumber);
                     break;
 
                 case ButtonType.OneOver:
-                    //Calculates 'currentNumber' to be one over itself
-                    if (string.IsNullOrEmpty(currentNumber) == false)
-                    {
-                        double oneOverNum = 1 / Convert.ToDouble(currentNumber);
-                        currentNumber = oneOverNum.ToString();
-                    }
-                    break;
-
                 case ButtonType.Squared:
-                    //Calculates 'currentNumber' to be a square of itself
-                    if (string.IsNullOrEmpty(currentNumber) == false)
-                    {
-                        double squareNum = Math.Pow(Convert.ToDouble(currentNumber), 2);
-                        currentNumber += squareNum.ToString();
-                    }
-                    break;
-
                 case ButtonType.SquareRoot:
-                    //Calculates 'currentNumber' to be a square root of itself
-                    if (string.IsNullOrEmpty(currentNumber) == false)
-                    {
-                        double sqrtNum = Math.Sqrt(Convert.ToDouble(currentNumber));
-                        currentNumber += sqrtNum.ToString();
-                    }
+                    //Will return respective value if 'currentNumber' is not empty
+                    currentNumber = CalcFractionSquareSqrt(currentNumber, pressedButton);
                     break;
 
                 case ButtonType.Percent:
                     //Not Done
-                    currentNumber = "NULL";
+                    currentNumber = "PERCENT NOT DONE";
                     break;
 
                 case ButtonType.ClearEntry:
@@ -226,11 +198,103 @@ namespace WPFCalculatorProject
         /// <param name="currentType">Type of math operation that was input</param>
         public void MathOperatorLogic(ButtonType currentType)
         {
-            if (string.IsNullOrEmpty(previousNumber) == true)
+            //Will only conduct operation if 'currentNumber' is not empty
+            if (string.IsNullOrEmpty(currentNumber) == false)
             {
-                currentMath = currentType;
-                previousNumber = currentNumber;
-                currentNumber = "";
+                if (string.IsNullOrEmpty(previousNumber) == true)
+                {
+                    currentMath = currentType;
+                    previousNumber = currentNumber;
+                    currentNumber = "";
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method for returning number in string form after deleting last character
+        /// </summary>
+        /// <param name="inputStrNum">Input number in string form to delete last character of</param>
+        /// <returns>Number string after delete</returns>
+        public static string DeleteLast(string inputStrNum)
+        {
+            //Will only conduct operation if 'inputStrNum' is not empty
+            if (string.IsNullOrEmpty(inputStrNum) == false)
+            {
+                return inputStrNum.Remove(inputStrNum.Length - 1, 1);
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// Method for returning number in string form after negate
+        /// </summary>
+        /// <param name="inputStrNum">Input number in string form to negate</param>
+        /// <returns>Number string after negate</returns>
+        public static string ToggleNegate(string inputStrNum)
+        {
+            //Will only conduct operation if 'inputStrNum' is not empty
+            if (string.IsNullOrEmpty(inputStrNum) == false)
+            {
+                if (inputStrNum.Contains('-'))
+                {
+                    return inputStrNum.Remove(0);
+                }
+                else
+                {
+                    return inputStrNum.Insert(0, "-");
+                }
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// Method for returning number in string form after adding dot
+        /// </summary>
+        /// <param name="inputStrNum">Input number in string form to add dot to</param>
+        /// <returns>Number string after adding dot</returns>
+        public static string AddDot(string inputStrNum)
+        {
+            //Will only conduct operation if 'inputStrNum' is not empty and does not contain a dot
+            if (inputStrNum.Contains('.') == false && string.IsNullOrEmpty(inputStrNum) == false)
+            {
+                return inputStrNum + ".";
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// Method for returning in string form after fraction, square, or square root
+        /// </summary>
+        /// <param name="inputStrNum">Input number in string form to do operation on</param>
+        /// <param name="currentType">Type of math operation that was input</param>
+        /// <returns>'currentNumber' string after math operation</returns>
+        public static string CalcFractionSquareSqrt(string inputStrNum, ButtonType currentType)
+        {
+            //Will only conduct operation if the input number is not empty
+            if (string.IsNullOrEmpty(inputStrNum) == false)
+            {
+                double tempNum = Convert.ToDouble(inputStrNum);
+
+                return currentType switch
+                {
+                    ButtonType.OneOver => (1 / tempNum).ToString(),
+                    ButtonType.Squared => (Math.Pow(tempNum, 2)).ToString(),
+                    ButtonType.SquareRoot => (Math.Sqrt(tempNum)).ToString(),
+                    _ => "",
+                };
+            }
+            else
+            {
+                return "";
             }
         }
 
