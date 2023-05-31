@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFCalculatorProject"
         mc:Ignorable="d"
-        Title="Calculator" Height="480" Width="450" AutomationProperties.Name="MainCalcWinfow" Background="Black" WindowStartupLocation="CenterScreen">
-    <Grid Height="480" AutomationProperties.Name="MainGrid" x:Name="MainGrid">
+        Title="Calculator" Height="540" Width="450" AutomationProperties.Name="MainCalcWinfow" Background="Black" WindowStartupLocation="CenterScreen">
+    <Grid Height="540" AutomationProperties.Name="MainGrid" x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
         <Button 
             Content="0" 
             HorizontalAlignment="Left" 
-            Margin="117,385,0,0" 
+            Margin="117,444,0,0" 
             VerticalAlignment="Top"
             Width="100" 
             FontSize="32" 
@@ -25,7 +29,7 @@
         <Button 
             Content="1" 
             HorizontalAlignment="Left" 
-            Margin="18,335,0,0" 
+            Margin="18,394,0,0" 
             VerticalAlignment="Top" 
             FontSize="32" 
             Width="99" 
@@ -40,7 +44,7 @@
         <Button 
             Content="2" 
             HorizontalAlignment="Left" 
-            Margin="117,335,0,0" 
+            Margin="117,394,0,0" 
             VerticalAlignment="Top" 
             FontSize="32" 
             Width="100" 
@@ -55,7 +59,7 @@
         <Button 
             Content="3" 
             HorizontalAlignment="Left" 
-            Margin="217,335,0,0" 
+            Margin="217,394,0,0" 
             VerticalAlignment="Top" 
             FontSize="32" Width="99" 
             Height="50" 
@@ -69,7 +73,7 @@
         <Button 
             Content="4" 
             HorizontalAlignment="Left" 
-            Margin="18,285,0,0" 
+            Margin="18,344,0,0" 
             VerticalAlignment="Top" 
             Width="99" 
             FontSize="32" 
@@ -84,7 +88,7 @@
         <Button 
             Content="5" 
             HorizontalAlignment="Left" 
-            Margin="117,285,0,0" 
+            Margin="117,344,0,0" 
             VerticalAlignment="Top"
             Width="100" Height="50" 
             FontSize="32" 
@@ -98,7 +102,7 @@
         <Button 
             Content="6" 
             HorizontalAlignment="Left" 
-            Margin="217,285,0,0" 
+            Margin="217,344,0,0" 
             VerticalAlignment="Top" 
             FontSize="32" 
             Width="99" 
@@ -113,7 +117,7 @@
         <Button 
             Content="7" 
             HorizontalAlignment="Left" 
-            Margin="18,236,0,0" 
+            Margin="18,294,0,0" 
             VerticalAlignment="Top" 
             Width="99" Height="50" 
             FontSize="32" 
@@ -127,7 +131,7 @@
         <Button 
             Content="8" 
             HorizontalAlignment="Left" 
-            Margin="117,236,0,0" 
+            Margin="117,294,0,0" 
             VerticalAlignment="Top" 
             FontSize="32" 
             Width="100" 
@@ -142,7 +146,7 @@
         <Button 
             Content="9" 
             HorizontalAlignment="Left" 
-            Margin="217,236,0,0"
+            Margin="217,294,0,0"
             VerticalAlignment="Top" 
             FontSize="32" Width="99" 
             Height="50" 
@@ -156,7 +160,7 @@
         <Button 
             Content="+" 
             HorizontalAlignment="Left" 
-            Margin="316,335,0,0" 
+            Margin="316,394,0,0" 
             VerticalAlignment="Top"
             Width="100" 
             FontSize="32" 
@@ -171,7 +175,7 @@
         <Button 
             Content="-" 
             HorizontalAlignment="Left" 
-            Margin="316,285,0,0" 
+            Margin="316,344,0,0" 
             VerticalAlignment="Top" 
             Width="100" 
             FontSize="32"
@@ -186,7 +190,7 @@
         <Button 
             Content="x" 
             HorizontalAlignment="Left" 
-            Margin="316,236,0,0" 
+            Margin="316,294,0,0" 
             VerticalAlignment="Top" 
             Width="100" 
             FontSize="32" 
@@ -201,7 +205,7 @@
         <Button 
             Content="/" 
             HorizontalAlignment="Left" 
-            Margin="316,186,0,0" 
+            Margin="316,244,0,0" 
             VerticalAlignment="Top"
             Width="100" 
             FontSize="32" 
@@ -216,7 +220,7 @@
         <Button 
             Content="=" 
             HorizontalAlignment="Left" 
-            Margin="316,385,0,0" 
+            Margin="316,444,0,0" 
             VerticalAlignment="Top" 
             Width="100" 
             FontSize="32" 
@@ -231,7 +235,7 @@
         <Button 
             Content="+/-" 
             HorizontalAlignment="Left" 
-            Margin="18,385,0,0" 
+            Margin="18,444,0,0" 
             VerticalAlignment="Top" 
             FontSize="32" 
             Width="99" 
@@ -246,7 +250,7 @@
         <Button 
             Content="." 
             HorizontalAlignment="Left" 
-            Margin="217,385,0,0" 
+            Margin="217,444,0,0" 
             VerticalAlignment="Top" 
             FontSize="32" 
             Width="99"
@@ -261,7 +265,7 @@
         <Button 
             Content="del" 
             HorizontalAlignment="Left" 
-            Margin="316,136,0,0" 
+            Margin="316,194,0,0" 
             VerticalAlignment="Top" 
             Width="100" 
             FontSize="32" 
@@ -276,7 +280,7 @@
         <Button 
             Content="sqrt" 
             HorizontalAlignment="Left"
-            Margin="217,186,0,0" 
+            Margin="217,244,0,0" 
             VerticalAlignment="Top" 
             FontSize="32" 
             Width="99" 
@@ -291,7 +295,7 @@
         <Button 
             Content="C" 
             HorizontalAlignment="Left"
-            Margin="217,136,0,0" 
+            Margin="217,194,0,0" 
             VerticalAlignment="Top"
             FontSize="32" 
             Width="99" 
@@ -306,7 +310,7 @@
         <Button 
             Content="CE" 
             HorizontalAlignment="Left" 
-            Margin="117,136,0,0" 
+            Margin="117,194,0,0" 
             VerticalAlignment="Top" 
             FontSize="32"
             Width="100" 
@@ -321,7 +325,7 @@
         <Button 
             Content="x^2" 
             HorizontalAlignment="Left" 
-            Margin="117,186,0,0" 
+            Margin="117,244,0,0" 
             VerticalAlignment="Top"
             FontSize="32"
             Width="100"
@@ -336,7 +340,7 @@
         <Button 
             Content="%" 
             HorizontalAlignment="Left" 
-            Margin="18,136,0,0" 
+            Margin="18,194,0,0" 
             VerticalAlignment="Top" 
             FontSize="32" 
             Width="99" 
@@ -351,7 +355,7 @@
         <Button 
             Content="1/x" 
             HorizontalAlignment="Left"
-            Margin="18,186,0,0" 
+            Margin="18,244,0,0" 
             VerticalAlignment="Top" 
             FontSize="32" 
             Width="99"
@@ -365,11 +369,11 @@
         />
         <TextBox 
             HorizontalAlignment="Left" 
-            Margin="18,38,0,0" 
+            Margin="18,70,0,0" 
             Text="0" 
             TextAlignment="Right"
             VerticalAlignment="Top" 
-            Height="98" 
+            Height="120" 
             Width="400"
             AutomationProperties.Name="MainTextBlock" 
             x:Name="MainTextBlock" 
@@ -379,25 +383,27 @@
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             ScrollViewer.CanContentScroll="True"
-            IsReadOnly="True"
+            IsReadOnly="True" 
+            TextWrapping="Wrap"
         />
         <TextBox 
             HorizontalAlignment="Left" 
-            Margin="18,0,0,0" 
+            Margin="18,10,0,0" 
             Text="" 
             TextAlignment="Right"
             VerticalAlignment="Top" 
-            Height="38"
+            Height="60"
             Width="400" 
             Foreground="White" 
             Background="#FF1B1616"
             AutomationProperties.Name="PreviousTextBlock" 
             x:Name="PreviousTextBlock" 
-            FontSize="26"
+            FontSize="24"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             ScrollViewer.CanContentScroll="True"
-            IsReadOnly="True"
+            IsReadOnly="True" 
+            TextWrapping="Wrap"
         />
     </Grid>
 </Window>

@@ -18,9 +18,10 @@ namespace WPFCalculatorProject
     /// </summary>
     public class CalcLogicController
     {
-        string previousNumber;
-        string currentNumber;
-        ButtonType currentMath;
+        string topDisplayStr;  //String for display on top TextBox of calculator
+        string previousNumStr; //Actual stored previous number
+        string currentNumStr;  //Stored current number
+        ButtonType currentMath;//Stored current math operation
 
         /// <summary>
         /// Basic constructor for CalcLogicController
@@ -28,27 +29,46 @@ namespace WPFCalculatorProject
         public CalcLogicController()
         {
             //Standard values set to empty or null
-            this.previousNumber = "";
-            this.currentNumber = "";
-            this.currentMath = ButtonType.Null;
+            topDisplayStr = "";
+            previousNumStr = "";
+            currentNumStr = "";
+            currentMath = ButtonType.Null;
         }
 
         /// <summary>
-        /// Method for returning 'previousNumber'
+        /// Method for returning 'topDisplayStr'
         /// </summary>
-        /// <returns>'previousNumber' string</returns>
+        /// <returns>'topDisplayStr' string</returns>
+        public string ReturnDisplayStr()
+        {
+            return topDisplayStr;
+        }
+
+        /// <summary>
+        /// Method for returning 'previousNumStr'
+        /// </summary>
+        /// <returns>'previousNumStr' string</returns>
         public string ReturnPreviousNumber()
         {
-            return previousNumber;
+            return previousNumStr;
         }
 
         /// <summary>
-        /// Method for returning 'currentNumber'
+        /// Method for returning 'currentNumStr'
         /// </summary>
-        /// <returns>'currentNumber' string</returns>
+        /// <returns>'currentNumStr' string</returns>
         public string ReturnCurrentNumber()
         {
-            return currentNumber;
+            return currentNumStr;
+        }
+
+        /// <summary>
+        /// Method for returning 'currentMath'
+        /// </summary>
+        /// <returns>'currentMath' string</returns>
+        public ButtonType ReturnCurrentMath()
+        {
+            return currentMath;
         }
 
         /// <summary>
@@ -56,9 +76,10 @@ namespace WPFCalculatorProject
         /// </summary>
         public void ResetValues()
         {
-            this.previousNumber = "";
-            this.currentNumber = "";
-            this.currentMath = ButtonType.Null;
+            topDisplayStr = "";
+            previousNumStr = "";
+            currentNumStr = "";
+            currentMath = ButtonType.Null;
         }
 
         /// <summary>
@@ -70,55 +91,48 @@ namespace WPFCalculatorProject
             switch (pressedButton)
             {
                 case ButtonType.Zero:
-                    currentNumber += "0";
+                    currentNumStr += "0";
                     break;
 
                 case ButtonType.One:
-                    currentNumber += "1";
+                    currentNumStr += "1";
                     break;
 
                 case ButtonType.Two:
-                    currentNumber += "2";
+                    currentNumStr += "2";
                     break;
 
                 case ButtonType.Three:
-                    currentNumber += "3";
+                    currentNumStr += "3";
                     break;
 
                 case ButtonType.Four:
-                    currentNumber += "4";
+                    currentNumStr += "4";
                     break;
 
                 case ButtonType.Five:
-                    currentNumber += "5";
+                    currentNumStr += "5";
                     break;
 
                 case ButtonType.Six:
-                    currentNumber += "6";
+                    currentNumStr += "6";
                     break;
 
                 case ButtonType.Seven:
-                    currentNumber += "7";
+                    currentNumStr += "7";
                     break;
 
                 case ButtonType.Eight:
-                    currentNumber += "8";
+                    currentNumStr += "8";
                     break;
 
                 case ButtonType.Nine:
-                    currentNumber += "9";
+                    currentNumStr += "9";
                     break;
 
                 case ButtonType.Equals:
                     //Will only work if 'currentMath', 'currentNumber', and 'previousNumber' have input data
-                    if (currentMath != ButtonType.Null
-                        && string.IsNullOrEmpty(currentNumber) == false
-                        && string.IsNullOrEmpty(previousNumber) == false)
-                    {
-                        double prevNum = Convert.ToDouble(previousNumber);
-                        double currNum = Convert.ToDouble(currentNumber);
-                        currentNumber = CalcMathOperation(prevNum, currNum, currentMath).ToString();
-                    }
+                    MathEqualsLogic();
                     break;
 
                 case ButtonType.Plus:
@@ -131,29 +145,29 @@ namespace WPFCalculatorProject
 
                 case ButtonType.Delete:
                     //Remove last number character in current number if not empty
-                    currentNumber = DeleteLast(currentNumber);
+                    currentNumStr = DeleteLast(currentNumStr);
                     break;
 
                 case ButtonType.Negate:
                     //Flips 'currentNumber' to and from negative and positive
-                    currentNumber = ToggleNegate(currentNumber);
+                    currentNumStr = ToggleNegate(currentNumStr);
                     break;
 
                 case ButtonType.Dot:
                     //Adds decimal to 'currentNumber' only if one is already not in it
-                    currentNumber = AddDot(currentNumber);
+                    currentNumStr = AddDot(currentNumStr);
                     break;
 
                 case ButtonType.OneOver:
                 case ButtonType.Squared:
                 case ButtonType.SquareRoot:
                     //Will return respective value if 'currentNumber' is not empty
-                    currentNumber = CalcFractionSquareSqrt(currentNumber, pressedButton);
+                    currentNumStr = CalcFractionSquareSqrt(currentNumStr, pressedButton);
                     break;
 
                 case ButtonType.Percent:
                     //Not Done
-                    currentNumber = "PERCENT NOT DONE";
+                    currentNumStr = "PERCENT NOT DONE";
                     break;
 
                 case ButtonType.ClearEntry:
@@ -163,12 +177,12 @@ namespace WPFCalculatorProject
 
                 case ButtonType.Clear:
                     //Only clears current number
-                    currentNumber = "";
+                    currentNumStr = "";
                     break;
 
                 default:
                     //Default only if an unspecified buttontype gets input somehow
-                    currentNumber = "ERROR, DEFAULT IN SWITCH STATEMENT REACHED";
+                    currentNumStr = "ERROR, DEFAULT IN SWITCH STATEMENT REACHED";
                     break;
             }
         }
@@ -193,20 +207,71 @@ namespace WPFCalculatorProject
         }
 
         /// <summary>
+        /// Method for logic when pressing equals button
+        /// </summary>
+        public void MathEqualsLogic()
+        {
+            if (currentMath != ButtonType.Null)
+            {
+                if (string.IsNullOrEmpty(currentNumStr) == false && string.IsNullOrEmpty(previousNumStr) == false)
+                {
+                    topDisplayStr += currentNumStr;
+                    currentNumStr = CalcMathOperation(Convert.ToDouble(previousNumStr), Convert.ToDouble(currentNumStr), currentMath).ToString();
+                    previousNumStr = "";
+                }
+            }
+        }
+
+        /// <summary>
         /// Method for logic when pressing math operation buttons
         /// </summary>
         /// <param name="currentType">Type of math operation that was input</param>
         public void MathOperatorLogic(ButtonType currentType)
         {
             //Will only conduct operation if 'currentNumber' is not empty
-            if (string.IsNullOrEmpty(currentNumber) == false)
+            if (string.IsNullOrEmpty(currentNumStr) == false)
             {
-                if (string.IsNullOrEmpty(previousNumber) == true)
+                if (string.IsNullOrEmpty(previousNumStr) == true)
                 {
+                    //Puts current number into previous number if previous number is empty
+                    previousNumStr = currentNumStr;
                     currentMath = currentType;
-                    previousNumber = currentNumber;
-                    currentNumber = "";
+                    topDisplayStr = currentNumStr + InsertMathOperator(currentMath);
+                    currentNumStr = "";
                 }
+                else
+                {
+                    //Logic for extra numbers if two numbers have already been calculated
+                    previousNumStr = CalcMathOperation(Convert.ToDouble(previousNumStr), Convert.ToDouble(currentNumStr), currentMath).ToString();
+                    currentMath = currentType;
+                    topDisplayStr = previousNumStr + InsertMathOperator(currentType);
+                    currentNumStr = "";
+                }
+            }
+        }
+        /// <summary>
+        /// Method for adding math operator symbol to a string based on ButtonType
+        /// </summary>
+        /// <param name="inputType">Type of math operation that was input</param>
+        /// <returns>Math operator with spaces on each side</returns>
+        public static string InsertMathOperator(ButtonType inputType)
+        {
+            switch (inputType)
+            {
+                case ButtonType.Plus:
+                    return " + ";
+
+                case ButtonType.Minus:
+                    return " - ";
+
+                case ButtonType.Multiply:
+                    return " x ";
+
+                case ButtonType.Divide:
+                    return " ÷ ";
+
+                default:
+                    return "Error in 'InsertMathOperator()' method switch statement.";
             }
         }
 

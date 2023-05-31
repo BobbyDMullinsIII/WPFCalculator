@@ -57,12 +57,12 @@ namespace WPFCalculatorProject
 
         private void Button_6_Click(object sender, RoutedEventArgs e)
         {
-            ButtonClick(ButtonType.Zero);
+            ButtonClick(ButtonType.Six);
         }
 
         private void Button_7_Click(object sender, RoutedEventArgs e)
         {
-            ButtonClick(ButtonType.Zero);
+            ButtonClick(ButtonType.Seven);
         }
 
         private void Button_8_Click(object sender, RoutedEventArgs e)
@@ -153,7 +153,7 @@ namespace WPFCalculatorProject
         {
             controller.ModifyNumbers(type);
             MainTextBlock.Text = controller.ReturnCurrentNumber();
-            PreviousTextBlock.Text = controller.ReturnPreviousNumber();
+            PreviousTextBlock.Text = controller.ReturnDisplayStr();
         }
     }
 }
