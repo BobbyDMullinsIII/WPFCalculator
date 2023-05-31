@@ -191,4 +191,5 @@ StyleCop.Cache
 bin
 obj
 *.v2
+*.v5.2
 *.v6.1
