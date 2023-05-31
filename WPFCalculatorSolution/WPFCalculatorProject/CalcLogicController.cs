@@ -166,18 +166,18 @@ namespace WPFCalculatorProject
                     break;
 
                 case ButtonType.Percent:
-                    //Not Done
-                    currentNumStr = "PERCENT NOT DONE";
+                    //Converts number to percentage equivalent in decimal form
+                    currentNumStr = CalcPercentage(currentNumStr);
                     break;
 
                 case ButtonType.ClearEntry:
-                    //Completely resets calculator
-                    ResetValues();
+                    //Only clears current number
+                    currentNumStr = "";
                     break;
 
                 case ButtonType.Clear:
-                    //Only clears current number
-                    currentNumStr = "";
+                    //Completely resets calculator
+                    ResetValues();
                     break;
 
                 default:
@@ -203,6 +203,23 @@ namespace WPFCalculatorProject
                 ButtonType.Multiply => firstNum * secondNum,
                 ButtonType.Divide => firstNum / secondNum,
                 _ => 0.0,
+            };
+        }
+
+        /// <summary>
+        /// Method for adding math operator symbol to a string based on ButtonType
+        /// </summary>
+        /// <param name="inputType">Type of math operation that was input</param>
+        /// <returns>Math operator with spaces on each side</returns>
+        public static string InsertMathOperator(ButtonType inputType)
+        {
+            return inputType switch
+            {
+                ButtonType.Plus => " + ",
+                ButtonType.Minus => " - ",
+                ButtonType.Multiply => " x ",
+                ButtonType.Divide => " ÷ ",
+                _ => "Error in 'InsertMathOperator()' method switch statement.",
             };
         }
 
@@ -247,31 +264,6 @@ namespace WPFCalculatorProject
                     topDisplayStr = previousNumStr + InsertMathOperator(currentType);
                     currentNumStr = "";
                 }
-            }
-        }
-        /// <summary>
-        /// Method for adding math operator symbol to a string based on ButtonType
-        /// </summary>
-        /// <param name="inputType">Type of math operation that was input</param>
-        /// <returns>Math operator with spaces on each side</returns>
-        public static string InsertMathOperator(ButtonType inputType)
-        {
-            switch (inputType)
-            {
-                case ButtonType.Plus:
-                    return " + ";
-
-                case ButtonType.Minus:
-                    return " - ";
-
-                case ButtonType.Multiply:
-                    return " x ";
-
-                case ButtonType.Divide:
-                    return " ÷ ";
-
-                default:
-                    return "Error in 'InsertMathOperator()' method switch statement.";
             }
         }
 
@@ -329,6 +321,24 @@ namespace WPFCalculatorProject
             if (inputStrNum.Contains('.') == false && string.IsNullOrEmpty(inputStrNum) == false)
             {
                 return inputStrNum + ".";
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// Method for converting a number to a percent and returning it as a decimal number
+        /// </summary>
+        /// <param name="inputStrNum">Input number in string form to calculate percentage</param>
+        /// <returns>Number string after calculating percentage</returns>
+        public static string CalcPercentage(string inputStrNum)
+        {
+            //Will only conduct operation if 'inputStrNum' is not empty
+            if (string.IsNullOrEmpty(inputStrNum) == false)
+            {
+                return (Convert.ToDouble(inputStrNum) / 100.0).ToString();
             }
             else
             {
