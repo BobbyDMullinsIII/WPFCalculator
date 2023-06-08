@@ -271,7 +271,7 @@ namespace WPFCalculatorProject
         /// Method for returning number in string form after deleting last character
         /// </summary>
         /// <param name="inputStrNum">Input number in string form to delete last character of</param>
-        /// <returns>Number string after delete</returns>
+        /// <returns>Number string after last character deleted</returns>
         public static string DeleteLastChar(string inputStrNum)
         {
             //Will only conduct operation if 'inputStrNum' is not empty
@@ -297,7 +297,7 @@ namespace WPFCalculatorProject
             {
                 if (inputStrNum.Contains('-'))
                 {
-                    return inputStrNum.Remove(0);
+                    return inputStrNum.Remove(0, 1);
                 }
                 else
                 {
@@ -314,13 +314,21 @@ namespace WPFCalculatorProject
         /// Method for returning number in string form after adding dot
         /// </summary>
         /// <param name="inputStrNum">Input number in string form to add dot to</param>
-        /// <returns>Number string after adding dot</returns>
+        /// <returns>Number string after adding dot if dot is not already present</returns>
         public static string AddDot(string inputStrNum)
         {
-            //Will only conduct operation if 'inputStrNum' is not empty and does not contain a dot
-            if (inputStrNum.Contains('.') == false && string.IsNullOrEmpty(inputStrNum) == false)
+            //Will only conduct operation if 'inputStrNum' is not empty
+            if (string.IsNullOrEmpty(inputStrNum) == false)
             {
-                return inputStrNum + ".";
+                //Will only conduct operation if dot is not present
+                if (inputStrNum.Contains('.') == false)
+                {
+                    return inputStrNum + ".";
+                }
+                else
+                {
+                    return inputStrNum;
+                }
             }
             else
             {
@@ -351,7 +359,7 @@ namespace WPFCalculatorProject
         /// </summary>
         /// <param name="inputStrNum">Input number in string form to do operation on</param>
         /// <param name="currentType">Type of math operation that was input</param>
-        /// <returns>'currentNumber' string after math operation</returns>
+        /// <returns>Number string after math operation</returns>
         public static string CalcFractionSquareSqrt(string inputStrNum, ButtonType currentType)
         {
             //Will only conduct operation if the input number is not empty
