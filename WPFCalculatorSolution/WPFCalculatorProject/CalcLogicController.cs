@@ -145,7 +145,7 @@ namespace WPFCalculatorProject
 
                 case ButtonType.Delete:
                     //Remove last number character in current number if not empty
-                    currentNumStr = DeleteLast(currentNumStr);
+                    currentNumStr = DeleteLastChar(currentNumStr);
                     break;
 
                 case ButtonType.Negate:
@@ -272,7 +272,7 @@ namespace WPFCalculatorProject
         /// </summary>
         /// <param name="inputStrNum">Input number in string form to delete last character of</param>
         /// <returns>Number string after delete</returns>
-        public static string DeleteLast(string inputStrNum)
+        public static string DeleteLastChar(string inputStrNum)
         {
             //Will only conduct operation if 'inputStrNum' is not empty
             if (string.IsNullOrEmpty(inputStrNum) == false)

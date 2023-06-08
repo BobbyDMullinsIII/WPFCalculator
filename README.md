@@ -1,2 +1,4 @@
 # WPFCalculator
-Repository for creating a WPF calculator.
+Repository for personal WPF calculator.
+
+Calculator based on standard Windows 10 calculator.
