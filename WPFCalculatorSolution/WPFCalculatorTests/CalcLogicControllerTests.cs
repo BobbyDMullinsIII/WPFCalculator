@@ -10,8 +10,7 @@ namespace WPFCalculatorTests
         //Arrange
         [DataRow(1.0, 2.0, ButtonType.Plus, 3.0)]       //1.0 + 2.0 = 3.0
         [DataRow(-1.0, -2.0, ButtonType.Plus, -3.0)]    //-1.0 + -2.0 = -3.0
-        [DataRow(1.23184902, 4.2939032, 
-            ButtonType.Plus, 5.52575222)]               //1.23184902 + 4.2939032 = 5.52575222
+        [DataRow(1.23184902, 4.2939032, ButtonType.Plus, 5.52575222)]               //1.23184902 + 4.2939032 = 5.52575222
         [DataRow(0.0, 0.0, ButtonType.Plus, 0.0)]       //0.0 + 0.0 = 0.0
         [DataRow(1.0, 2.0, ButtonType.Minus, -1.0)]     //1.0 - 2.0 = -1.0
         [DataRow(12.0, 9.0, ButtonType.Minus, 3.0)]     //12.0 - 9.0 = 3.0
@@ -20,13 +19,11 @@ namespace WPFCalculatorTests
         [DataRow(1.0, 2.0, ButtonType.Multiply, 2.0)]   //1.0 * 2.0 = 2.0
         [DataRow(10.0, 2.0, ButtonType.Multiply, 20.0)] //10.0 * 2.0 = 20.0
         [DataRow(-1.0, 5.0, ButtonType.Multiply,-5.0)]  //-1.0 * 5.0 = -5.0
-        [DataRow(1.23184902, 4.2939032, 
-            ButtonType.Multiply, 5.289440448894864)]    //1.23184902 * 4.2939032 = 5.289440448894864
+        [DataRow(1.23184902, 4.2939032, ButtonType.Multiply, 5.289440448894864)]    //1.23184902 * 4.2939032 = 5.289440448894864
         [DataRow(1.0, 2.0, ButtonType.Divide, 0.5)]     //1.0 / 2.0 = 0.5
         [DataRow(20.0, 2.0, ButtonType.Divide, 10.0)]   //20.0 / 2.0 = 10.0
         [DataRow(15.0, 4.0, ButtonType.Divide, 3.75)]   //15.0 / 4.0 = 3.75
-        [DataRow(1.23184902, 4.2939032, 
-            ButtonType.Divide, 0.2868832767352557)]     //1.23184902 / 4.2939032 = 0.2868832767352557
+        [DataRow(1.23184902, 4.2939032, ButtonType.Divide, 0.2868832767352557)]     //1.23184902 / 4.2939032 = 0.2868832767352557
         /// <param name="firstNum">First number to conduct operation</param>
         /// <param name="secondNum">Second number to conduct operation</param>
         /// <param name="currentType">Type of math operation to conduct</param>
